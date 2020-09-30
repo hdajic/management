@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 
 class CreateProduct extends Component {
+
   state = {
     product: {
-      model: "",
+      model: '',
       size: 0,
-      condition: 0,
-    },
-  };
-
+      condition: 0
+    }
+  }
   handleSubmit = (event) => {
     event.preventDefault();
   };
@@ -60,7 +60,7 @@ class CreateProduct extends Component {
             />
           </div>
         </form>
-        <button className="btn btn-primary">Create product</button>
+        <button className="btn btn-primary" onClick={() => this.props.onCreateProduct(this.state.product)}>Create product</button>
       </div>
     );
   }

@@ -12,7 +12,6 @@ const NavBar = () => {
   <div className="collapse navbar-collapse" id="navbarColor01">
     <div className="navbar-nav mr-auto">
       <NavLink className="nav-item nav-link" to="/products">Products</NavLink>
-      <NavLink className="nav-item nav-link" to="/product/create">Create Product</NavLink>
     </div>
   </div>
 </nav>

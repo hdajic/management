@@ -1,30 +1,19 @@
-import Axios from "axios";
 import React, { Component } from "react";
-import { getProducts } from "../services/products.js";
+import { Link } from "react-router-dom";
 
 class Products extends Component {
-  state = {
-    products: [],
-  };
 
   selectProduct = (product) => {
     console.log(product);
     this.props.history.push("/product/details/" + product.productId);
   };
 
-  deleteProduct = (product) => {
-    const products = this.state.products.filter(
-      (p) => p.productId !== product.productId
-    );
-    this.setState({ products });
-  };
-
-  async componentDidMount() {
-    const { data: products} = await Axios.get('http://localhost:9000/product');;
-    this.setState({products});
+  handleSubmit = () => {
+    console.log(this.state.product);
   }
 
   render() {
+    const {products} = this.props;
     return (
       <div>
         <table className="table">
@@ -38,7 +27,7 @@ class Products extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.products.map((p) => (
+            {products.map((p) => (
               <tr key={p.productId}>
                 <td className="hover" onClick={() => this.selectProduct(p)}>
                   {p.productId}
@@ -49,7 +38,7 @@ class Products extends Component {
                 <td>
                   <button
                     className="btn btn-danger btn-sm"
-                    onClick={() => this.deleteProduct(p)}
+                    onClick={() => this.props.onDeleteProduct(p)}
                   >
                     Delete
                   </button>
@@ -58,6 +47,7 @@ class Products extends Component {
             ))}
           </tbody>
         </table>
+        <Link className="btn btn-primary" to="/product/create">Add Product</Link>
       </div>
     );
   }
