@@ -1,9 +1,10 @@
+import Axios from "axios";
 import React, { Component } from "react";
 import { getProducts } from "../services/products.js";
 
 class Products extends Component {
   state = {
-    products: getProducts(),
+    products: [],
   };
 
   selectProduct = (product) => {
@@ -17,6 +18,11 @@ class Products extends Component {
     );
     this.setState({ products });
   };
+
+  async componentDidMount() {
+    const { data: products} = await Axios.get('http://localhost:9000/product');;
+    this.setState({products});
+  }
 
   render() {
     return (
