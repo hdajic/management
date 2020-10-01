@@ -1,6 +1,5 @@
-import Axios from "axios";
+import axios from "axios";
 import React, { Component } from "react";
-//import { addProduct } from "../services/products";
 
 class CreateProduct extends Component {
   state = {
@@ -22,8 +21,7 @@ class CreateProduct extends Component {
   };
 
   onCreate = async() => {
-    await Axios.post("http://localhost:9000/product", this.state.product);
-    //addProduct(this.state.product);
+    await axios.post("http://localhost:9000/product", this.state.product);
     //this.props.history.push("/products");
   }
 
