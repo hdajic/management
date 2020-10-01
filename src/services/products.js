@@ -32,3 +32,7 @@ export function getProducts() {
 export function getProduct(id) {
     return products.find(p => p.productId === id);
 }
+
+export function addProduct(product) {
+    products.push(product);
+}
