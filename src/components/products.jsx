@@ -13,7 +13,6 @@ class Products extends Component {
   }
 
   selectProduct = (product) => {
-    console.log(product);
     this.props.history.push("/product/edit/" + product.productId);
   };
 
@@ -29,7 +28,7 @@ class Products extends Component {
         <table className="table table-hover">
           <thead>
             <tr>
-              <th scope="col">Type</th>
+              <th scope="col">ID</th>
               <th scope="col">Model</th>
               <th scope="col">Size</th>
               <th scope="col">Condition</th>

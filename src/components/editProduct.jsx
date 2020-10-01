@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Info, Error } from "./notification";
 
 class EditProduct extends Component {
   state = {
@@ -25,17 +26,32 @@ class EditProduct extends Component {
   }
 
   saveChanges = async () => {
-    await axios.put("http://localhost:9000/product", this.state.product);
+    const { status } = await axios.put(
+      "http://localhost:9000/product",
+      this.state.product
+    );
+    if (status === 200) {
+      Info("Product sucessfully updated!");
+      this.props.history.push("/products");
+    } else Error("Error while updating product!");
   };
 
   deleteProduct = async () => {
-    await axios.delete('http://localhost:9000/product/' + this.state.product.productId);
+    const { status } = await axios.delete(
+      "http://localhost:9000/product/" + this.state.product.productId
+    );
+
+    if (status === 200) {
+      Info("Product sucessfully deleted!");
+      this.props.history.push("/products");
+    } else Error("Error while deleting product!");
   };
 
   render() {
     const { product } = this.state;
     return (
       <div>
+        <h1>Product</h1>
         <form>
           <div className="form-group">
             <label htmlFor="productModel">Model:</label>
